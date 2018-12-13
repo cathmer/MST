@@ -49,6 +49,10 @@ public class Component {
         bestWeight = Integer.MAX_VALUE;
     }
 
+    public String getHostName() {
+        return receiverMap.get(processId);
+    }
+
     public void graphReady() {
         new Thread(() -> {
             try {
@@ -259,6 +263,7 @@ public class Component {
                 System.out.println("HALT!");
                 System.out.println("Core: " + name);
                 System.out.println("Level: " + level);
+                System.exit(0);
             }
         }
     }
@@ -292,6 +297,7 @@ public class Component {
 
         tryingQueue = true;
         ArrayList<Message> copiedQueue = new ArrayList<>(messageQueue);
+        System.out.println(copiedQueue);
         messageQueue.clear();
         for (Message msg : copiedQueue) {
             switch (msg.getMsgType()) {
